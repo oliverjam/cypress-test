@@ -4,6 +4,7 @@ const server = express();
 
 server.get("/", (req, res) => {
   res.send(`
+    <!doctype html>
     <h1>Home</h1>
     <a href="/no-content-type">No content type</a>
     <a href="/has-content-type">Has content type</a>
@@ -12,7 +13,13 @@ server.get("/", (req, res) => {
 
 server.get("/no-content-type", (req, res) => {
   res.end(`
+    <!doctype html>
     <h1>No content type</h1>
+    <script>
+      window.addEventListener("load", event => {
+        console.log(event);
+      })
+    </script>
   `);
 });
 
@@ -20,7 +27,13 @@ server.get("/no-content-type", (req, res) => {
 // which automatically sets content-type: text/html
 server.get("/has-content-type", (req, res) => {
   res.send(`
+    <!doctype html>
     <h1>Has content type</h1>
+    <script>
+      window.addEventListener("load", event => {
+        console.log(event);
+      })
+    </script>
   `);
 });
 
